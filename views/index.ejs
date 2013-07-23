@@ -30,27 +30,29 @@
 <script src="http://localhost:8081/socket.io/socket.io.js"></script>
 <script>
   var socket = io.connect('http://localhost:8081');
-  socket.on('news', function (data) {
+  
+  socket.on('navdata', function (data) {
     console.log(data);
-    socket.emit('my other event', { my: '2' });
   });
 
   var timer
   var log
+
+  // Easy mode...
   var mapping = {
     'space': 'takeoff',
     'x' : 'land',
-    'w' : 'front',
-    's' : 'back',
+    'up' : 'front',
+    'down' : 'back',
     'a' : 'left',
     'd' : 'right',
-    'j' : 'counterClockwise',
-    'l' : 'clockwise',
-    'i' : 'up',
-    'k' : 'down',
+    'left' : 'counterClockwise',
+    'right' : 'clockwise',
+    'a' : 'up',
+    'z' : 'down',
     'dash': 'decreaseSpeed',
     'equal': 'increaseSpeed',
-  }
+  }  
 
   $(function(){
     timer = setInterval(tick, 30)
